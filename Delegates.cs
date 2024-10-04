@@ -5,14 +5,15 @@ public class Delegates
     public delegate int Operation(int a, int b);
 
     public void RunExample() {
-        Operation sum = (a, b) => a + b;
-        Operation diff = (a, b) => a - b;
-        Operation times = (a, b) => a * b;
-        Operation division = (a, b) => a / b;
+        List<Operation> operations = [
+            (a, b) => a + b,
+            (a, b) => a - b,
+            (a, b) => a * b,
+            (a, b) => a / b
+        ];
 
-        Console.WriteLine(sum(2,2));
-        Console.WriteLine(diff(2,2));
-        Console.WriteLine(times(2,2));
-        Console.WriteLine(division(2,2));
+        foreach(var op in operations) {
+            Console.WriteLine(op(2,2));
+        }
     }
 }
