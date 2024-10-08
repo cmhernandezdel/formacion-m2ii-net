@@ -1,0 +1,2 @@
+pizza: id, name, description, url, getPrice = sum(ingredientes) * 1,2
+ingredientes: id, name, price
