@@ -1,0 +1,15 @@
+hacer un paint
+
+1. toolbar
+colores
+figuras
+
+figura: id, inicio (punto), final (punto), colores
+
+registrar figura, registrar color
+tipo de figura (enum), color (enum), inicio y final (puntos)
+
+canvas: add, remove
+
+strategy pattern : para quitar un switch
+command pattern : para enviar los comandos
