@@ -23,8 +23,10 @@ public static class App
         return new Canvas();
     }
 
-    public static void Run(string commandName, string shapeName, ShapeDto dto)
+    public static void Run(string shapeName, ShapeDto dto)
     {
-        _toolbar.GetCommand(commandName, shapeName, dto).Execute();
+        var shape = _toolbar.GetShape(shapeName, dto);
+        var command = new AddShapeCommand(_canvas, shape);
+        command.Execute();
     }
 }
