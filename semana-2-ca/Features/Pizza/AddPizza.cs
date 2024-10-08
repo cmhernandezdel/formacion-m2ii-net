@@ -1,4 +1,5 @@
 using Tarradellas.Domain;
+using Tarradellas.Infrastructure;
 using PizzaEntity = Tarradellas.Domain.Pizza;
 
 namespace Tarradellas.Features.Pizza;
@@ -8,12 +9,30 @@ public sealed class AddPizza
     public readonly record struct Request(string Name, string Description, Uri Url, IEnumerable<Ingredient> Ingredients);
     public readonly record struct Response(Guid Id, string Name, string Description, Uri Url, double Price, IEnumerable<Ingredient> Ingredients);
 
-    public class Controller 
-    {
-
+    public interface IController {
+        Response Handle(Request request);
     }
 
-    private class Handler(IAddPizza repository)
+    public interface IHandler {
+        Response Handle(Request request);
+    }
+
+    public class Controller(IHandler handler) : IController
+    {
+        public Response Handle(Request request)
+        {
+            return handler.Handle(request);
+        }
+
+        // setup DI
+        public static IController Create() {
+            var repository = new PizzaRepository();
+            var handler = new Handler(repository);
+            return new Controller(handler);
+        }
+    }
+
+    private class Handler(IAddPizza repository) : IHandler
     {
         public Response Handle(Request request)
         {
