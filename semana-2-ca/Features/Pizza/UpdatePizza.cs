@@ -5,7 +5,7 @@ namespace Tarradellas.Features.Pizza;
 
 public sealed class UpdatePizza
 {
-    public readonly record struct Request(Guid Id, string Name, string Description, Uri Url, IEnumerable<Ingredient> Ingredients);
+    public readonly record struct Request(Guid Id, string Name, string Description, Uri Url);
     public readonly record struct Response(Guid Id, string Name, string Description, Uri Url, double Price, IEnumerable<Ingredient> Ingredients);
 
     public interface IController {
