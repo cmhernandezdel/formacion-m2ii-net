@@ -6,9 +6,20 @@ public sealed class Ingredient : Entity
 
     public double Price { get; private set; }
 
-    public Ingredient(string name, double price)
+    private Ingredient(Guid id, string name, double price) : base(id)
     {
         Name = name;
         Price = price;
+    }
+
+    public void Update(string name, double price)
+    {
+        Name = name;
+        Price = price;
+    }
+
+    public static Ingredient Create(string name, double price)
+    {
+        return new Ingredient(Guid.NewGuid(), name, price);
     }
 }
