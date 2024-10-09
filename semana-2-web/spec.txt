@@ -1,0 +1,5 @@
+implementar un post, enviar una request y capturar los datos desde el body
+guardamos los datos en memoria
+
+implementar un metdo get , que nos devuelva los datos por id
+en caso de no existir, 404
