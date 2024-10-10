@@ -1,6 +1,5 @@
 ﻿using Example.EntityFramework.Domain.Ingredients;
 using Example.EntityFramework.Infrastructure.EntityFramework;
-using Microsoft.EntityFrameworkCore;
 
 namespace Example.EntityFramework.Infrastructure.Ingredients;
 

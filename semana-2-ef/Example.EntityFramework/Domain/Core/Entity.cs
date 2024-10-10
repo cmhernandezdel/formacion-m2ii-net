@@ -9,11 +9,6 @@ public abstract class Entity
 {
     public Guid Id { get; }
 
-    private Entity()
-    {
-        // Entity framework
-    }
-
     protected Entity(Guid id)
     {
         Id = id;

@@ -17,17 +17,12 @@ public sealed class Pizza : Entity
 
     public double GetPrice() => Ingredients.Sum(i => i.Price) * 1.2;
 
-    private Pizza() : base(Guid.NewGuid())
-    {
-        // Entity Framework
-    }
-
-    private Pizza(Guid id, string name, string description, Uri url, HashSet<Ingredient> ingredients) : base(id)
+    private Pizza(Guid id, string name, string description, Uri url) : base(id)
     {
         Name = name;
         Description = description;
         Url = url;
-        _ingredients = ingredients;
+        _ingredients = [];
     }
 
     public void AddIngredient(Ingredient ingredient)
@@ -40,7 +35,7 @@ public sealed class Pizza : Entity
         _ingredients.Remove(ingredient);
     }
 
-    public void Update (string name, string description, Uri url) 
+    public void Update(string name, string description, Uri url)
     {
         Name = name;
         Description = description;
@@ -49,6 +44,12 @@ public sealed class Pizza : Entity
 
     public static Pizza Create(string name, string description, Uri url, HashSet<Ingredient> ingredients)
     {
-        return new Pizza(Guid.NewGuid(), name, description, url, ingredients);
+        var pizza = new Pizza(Guid.NewGuid(), name, description, url);
+        foreach (var ingredient in ingredients)
+        {
+            pizza.AddIngredient(ingredient);
+        }
+
+        return pizza;
     }
 }
