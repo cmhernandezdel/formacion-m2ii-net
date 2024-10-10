@@ -13,6 +13,14 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddCors(opts => {
+    opts.AddPolicy("CORSPolicy", policy => {
+        policy.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .SetPreflightMaxAge(TimeSpan.FromSeconds(3600));
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -41,5 +49,7 @@ app.MapGet("/books/{id}", (Guid id) =>
     return getHandler.Handle(bookRequest);
 })
 .WithOpenApi();
+
+app.UseCors("CORSPolicy");
 
 app.Run();
