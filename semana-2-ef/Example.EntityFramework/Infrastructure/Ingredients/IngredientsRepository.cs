@@ -1,4 +1,5 @@
-﻿using Example.EntityFramework.Domain.Ingredients;
+﻿using Example.EntityFramework.Domain.Core;
+using Example.EntityFramework.Domain.Ingredients;
 using Example.EntityFramework.Infrastructure.EntityFramework;
 
 namespace Example.EntityFramework.Infrastructure.Ingredients;

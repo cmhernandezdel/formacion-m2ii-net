@@ -13,7 +13,9 @@ public class CreateIngredientUseCase
         public CreateIngredientResponse Handle(CreateIngredientRequest request)
         {
             var entity = Ingredient.Create(request.Name, request.Price);
+            var outboxEvent = new AddIngredientEvent(Guid.NewGuid(), entity.Id, entity);
             uow.Repository.Insert(entity);
+            uow.EventRepository.Add(outboxEvent);
             uow.Commit();
             return new CreateIngredientResponse(entity.Id, entity.Name, entity.Price);
         }

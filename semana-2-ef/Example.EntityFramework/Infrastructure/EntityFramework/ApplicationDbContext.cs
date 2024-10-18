@@ -1,4 +1,5 @@
-﻿using Example.EntityFramework.Domain.Ingredients;
+﻿using Example.EntityFramework.Domain.Core;
+using Example.EntityFramework.Domain.Ingredients;
 using Example.EntityFramework.Domain.Pizzas;
 using Example.EntityFramework.Infrastructure.EntityFramework.Configurations;
 using Example.EntityFramework.Infrastructure.EntityFramework.Interceptors;
@@ -28,4 +29,5 @@ public sealed class ApplicationDbContext : DbContext
 
     public DbSet<Ingredient> Ingredients { get; set; }
     public DbSet<Pizza> Pizzas { get; set; }
+    public DbSet<OutboxEvent> OutboxEvents { get; set; }
 }
