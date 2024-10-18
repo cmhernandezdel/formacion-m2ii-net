@@ -22,7 +22,8 @@ builder.Services.AddControllers()
 builder.Services.AddRouting();
 builder.Services.AddDbContext<ApplicationDbContext>(opts =>
 {
-    opts.UseInMemoryDatabase("ExampleDB");
+    string connectionString = "Server=db;Port=3306;Database=mydb;User=user;Password=password;";
+    opts.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 });
 
 // Add services to the container.
